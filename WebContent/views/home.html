@@ -1,0 +1,101 @@
+<div  class="wrapper">
+	<nav id="sidebar">
+		<div class="sidebar-header">
+			<h3>SRM Dashboard</h3>
+		</div>
+		<ul class="list-unstyled components">
+			<li class="active" ng-if="roles == 'user'"><a
+				href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Role1</a>
+				<ul class="collapse list-unstyled" id="homeSubmenu">
+					<li><a>Home 1</a></li>
+					<li><a>Home 2</a></li>
+					<li><a>Home 3</a></li>
+				</ul></li>
+			<li class="dropdown" ng-if="roles == 'Admin'"><a
+				class="dropdown-toggle" data-toggle="collapse" aria-expanded="false">Dashboard_Role2<span
+					class="caret"></span> <span class="fa fa-cog fa-lg solo"
+					title="Goal setting"></span></a>
+				<ul class="dropdown-menu dropdown-menu-form" role="menu"
+					style="list-style: circle; padding-left: 20px;">
+					<li><a ui-sref="home.uprof">Page 1</a></li>
+					<li><a ui-sref="home.uprof">Page 2</a></li>
+					<li><a ui-sref="home.uprof">Page 3</a></li>
+				</ul></li>
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" data-toggle="collapse" aria-expanded="false">NIRF<span
+					class="caret"></span> <span class="fa fa-cog fa-lg solo"
+					title="Goal setting"></span>
+			</a>
+
+				<ul class="dropdown-menu dropdown-menu-form" role="menu"
+					style="width: 100%;">
+					<li><a ui-sref="home.test"> Profile </a></li>
+					<li><a ui-sref="home.goals">Student </a></li>
+					<li><a ui-sref="home.studProf">Demography </a></li>
+					<li><a ui-sref="home.rank">Competition </a></li>
+
+				</ul></li>
+
+
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" data-toggle="collapse" aria-expanded="false">Quora
+					and pagalguy<span class="caret"></span> <span
+					class="fa fa-cog fa-lg solo" title="Goal setting"></span>
+			</a>
+
+				<ul class="dropdown-menu dropdown-menu-form" role="menu"
+					style="width: 100%;">
+					<li><a ui-sref="home.uprof"> Profile </a></li>
+					<li><a ui-sref="home.goals">Student </a></li>
+					<li><a ui-sref="home.studProf">Demography </a></li>
+					<li><a ui-sref="home.rank">Competition </a></li>
+
+				</ul></li>
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" data-toggle="collapse" aria-expanded="false">Social
+					and Intelligence<span class="caret"></span> <span
+					class="fa fa-cog fa-lg solo" title="Goal setting"></span>
+			</a>
+
+				<ul class="dropdown-menu dropdown-menu-form" role="menu"
+					style="width: 100%;">
+					<li><a ui-sref="home.uprof"> Profile </a></li>
+					<li><a ui-sref="home.goals">Student Count </a></li>
+					<li><a ui-sref="home.studProf">Demography </a></li>
+					<li><a ui-sref="home.rank">Competition &amp; Ranking </a></li>
+
+				</ul></li>
+
+		</ul>
+	</nav>
+
+	<div id="content">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" id="sidebarCollapse"
+						class="btn btn-info navbar-btn">
+						<i class="glyphicon glyphicon-align-left"></i> <span>Menu</span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<!-- <ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Page</a></li>
+						<li><a href="#">Page</a></li>
+						<li><a href="#">Page</a></li>
+						<li><a href="#">Page</a></li>
+					</ul> -->
+				</div>
+			</div>
+		</nav>
+		
+	</div>
+	
+		<div class="">
+Welcome<h1>{{login.username}}</h1>
+		<ui-view></ui-view>
+	</div>
+</div>
+
+

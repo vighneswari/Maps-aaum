@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html ng-app="routerApp">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Flash</title>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/custom.css">
+<link rel="stylesheet" href="css/d3map.css">
+<link rel="stylesheet" href="css/gridtemplete.css">
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9deHAUnAxQmzTTp0QtTVa8ZvWzgfBaaE"
+  type="text/javascript"></script>
+
+<script>$(function(){
+    $(".dropdown").hover(            
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).fadeIn("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret");                
+            },
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).fadeOut("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret");                
+            });
+    });
+
+$('.responsive-tabs').responsiveTabs({
+	  accordionOn: ['xs', 'sm'] // xs, sm, md, lg 
+	});
+</script>
+
+<style>html, body { height: 100%; }
+
+.angular-google-map-container { height: 100vh; }
+
+
+
+.feature {
+		fill: none;
+		stroke: grey;
+		stroke-width: 1px;
+  		stroke-linejoin: round;
+	}
+	.mesh {
+		fill: none;
+  		stroke: lightgrey;
+  		stroke-width: 2px;
+  		stroke-linejoin: round;
+	}
+	
+	
+ 	svg {
+ 	margin-left:-240px;
+    fill: grey;
+}
+	h1 {
+		font-family: sans-serif;
+	} 
+  .active {
+    fill: #98f5ff;
+}
+    
+ 
+ path {
+  stroke: white;
+  stroke-width: 0.25px;
+  fill: grey;
+}
+ 
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="#" class="pull-left"><img
+					src="data:image/png;base64,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"
+					style="height: 50px; width: 150px;"></a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+
+
+				<li class="active"><a ui-sref="about">About Flash</a></li>
+				<li class="dropdown"  >
+				<a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"  >Samples <span class="caret"></span></a>
+					<ul class="dropdown-menu dropdown-content nav-dropdown2">
+						<li><a ui-sref="powerbi">Power BI</a></li>
+						<li><a ui-sref="birt">Birt Report</a></li>
+						<li><a ui-sref="d3">D3 Dashboard</a></li>
+					</ul></li>
+	
+
+			</ul>
+
+		</div>
+	</nav>
+ 
+<div ui-view></div>
+<div id ="content"> </div>
+
+	<script src="lib/jquery.min.js"></script>
+	<script src="lib/bootstrap.min.css"></script>
+	<script src="lib/angular.min.js"></script>
+	<script src="lib/angular-ui-router.js"></script>
+	<script src="lib/bootstrap.min.js"></script>
+	<script src="lib/angular-googlemap.js"></script>
+	<script src="lib/lodash.min.js"></script>
+	
+<!-- 	<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v0.min.js"></script> -->
+	
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://d3js.org/d3.geo.projection.v0.min.js"></script>
+ 	<script src="https://d3js.org/topojson.v1.min.js"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-cookies.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/loginCtrl.js"></script>
+	<script src="js/mapCtrl.js"></script>
+
+</body>
+</html>
