@@ -1,4 +1,4 @@
-var routerApp = angular.module('routerApp', [ 'ui.router', 'ngCookies','uiGmapgoogle-maps' ]);
+var routerApp = angular.module('routerApp', [ 'ui.router', 'ngCookies','uiGmapgoogle-maps']);
 routerApp.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/about');
 	$stateProvider.state('about', {

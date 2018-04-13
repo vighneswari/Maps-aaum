@@ -82,10 +82,9 @@ public class Services{
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_HTML, MediaType.TEXT_PLAIN })
 	public Response getData() throws ClassNotFoundException, JSONException, SQLException {
 		DAOClass dao = new DAOClass();
-		
-	
+
 		JSONObject jObject = new JSONObject();
-		
+
 		String data = dao.getData();
 		
 		System.out.println("data--->"+data.toString());
